@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+    <title>Prediction Result</title>
+</head>
+<body>
+    <div class="result-container">
+        <h2>Predicted Restaurant Rating</h2>
+        <p>The predicted rating is: 
+            <strong class="rating-value 
+                {% if rating|float >= 4.0 %}green
+                {% elif rating|float <= 3.0 %}red
+                {% endif %}">{{ rating }}</strong>
+        </p>
+
+        <h3>Recommended Restaurant</h3>
+        <p><strong>Name:</strong> {{ restaurant }}</p>
+        <p><strong>Famous Dish:</strong> {{ dish }}</p>
+        <p><strong>Location:</strong> {{ location }}</p>
+        <p><a href="{{ google_maps_link }}" target="_blank" class="btn btn-secondary">View on Google Maps</a></p>
+        <a href="/" class="btn btn-primary">Predict Again</a>
+    </div>
+</body>
+
+
+</html>

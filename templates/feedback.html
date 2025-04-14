@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback | Restaurant Rating Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='feedback.css') }}">
+</head>
+<body>
+    <div class="feedback-container">
+        {% if submitted %}
+            <h2>Thank you, {{ name }}!</h2>
+            <p>Your feedback has been successfully received. We appreciate your input and will get back to you soon.</p>
+            <a href="/" class="btn">Back to Home</a>
+        {% else %}
+            <h1>We Value Your Feedback</h1>
+            <p>Please provide your feedback below.</p>
+            <form method="POST" action="/feedback">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Submit Feedback</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>

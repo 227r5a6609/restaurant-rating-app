@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Rating Predictor</title>
+    <script
+    src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+    type="module"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/feedback">Feedback</a>
+    </nav>
+
+    <div class="container">
+        <div class="left-panel">
+            <dotlottie-player
+            src="https://lottie.host/3e0c0d8e-4304-4e64-abc2-8115eb74ccba/oWYIUiIirJ.lottie"
+            background="transparent"
+            speed="1"
+            style="width: 500px; height: 500px"
+            loop
+            autoplay
+            ></dotlottie-player>
+
+            <h2>Restaurant Rating Predictor 🍽️</h2>
+            <p>Let AI recommend top-rated spots & must-try dishes!</p>
+        </div>
+
+        <!-- Restaurant Rating Prediction Form -->
+        <form action="/predict" method="post" class="form-grid">
+            <div class="form-column">
+                <label for="online_order">Online Order</label>
+                <select name="online_order" id="online_order">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+
+                <label for="votes">Votes</label>
+                <input type="number" name="votes" required>
+
+                <!-- Dropdown for Location -->
+                <label for="location">Location</label>
+                <select name="location" id="location" required>
+                    <option value="" disabled selected>Select Location</option>
+                    {% for loc in locations %}
+                        <option value="{{ loc }}">{{ loc }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-column">
+                <label for="book_table">Book Table</label>
+                <select name="book_table" id="book_table">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+
+                <label for="cost">Cost for Two</label>
+                <input type="number" name="cost" required>
+
+                <!-- Dropdown for Cuisine -->
+                <label for="cuisine">Cuisine</label>
+                <select name="cuisine" id="cuisine" required>
+                    <option value="" disabled selected>Select Cuisine</option>
+                    {% for cuisine in cuisines %}
+                        <option value="{{ cuisine }}">{{ cuisine }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Dropdown for Restaurant Type -->
+                <label for="rest_type">Restaurant Type</label>
+                <select name="rest_type" id="rest_type" required>
+                    <option value="" disabled selected>Select Restaurant Type</option>
+                    {% for rest_type in rest_types %}
+                        <option value="{{ rest_type }}">{{ rest_type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit">Predict Rating</button>
+        </form>
+    </div>
+</body>
+</html>
