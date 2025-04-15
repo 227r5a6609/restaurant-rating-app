@@ -17,7 +17,7 @@ body {
     border-radius: 20px;
     max-width: 900px;
     width: 95%;
-    height: 90vh;
+    height: relative;
     padding: 2rem 2.5rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(30px);
